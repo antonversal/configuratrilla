@@ -119,5 +119,15 @@ describe Configuratrilla::Config do
       expect(configuratrilla.database.test1.test2.test3.test4.host).to eq("127.0.0.1")
       expect(configuratrilla.database.test1.test2.test3.test4.user).to eq("rails")
     end
+
+    it "should accept chain of methods and then block" do
+      configuratrilla = Configuratrilla::Config.new
+      configuratrilla.database.test do
+        host "127.0.0.1"
+        user "rails"
+      end
+      expect(configuratrilla.database.test.host).to eq("127.0.0.1")
+      expect(configuratrilla.database.test.user).to eq("rails")
+    end
   end
 end
