@@ -19,7 +19,7 @@ module Configuratrilla
       new_conf = @parent.class.new(@parent)
       values = @parent.instance_variable_get(:@values)
       values.merge!(@previous_method => new_conf)
-      new_conf.public_send(method_id, *args, &block)
+      new_conf.send(method_id, *args, &block)
     end
   end
 end
