@@ -129,5 +129,25 @@ describe Configuratrilla::Config do
       expect(configuratrilla.database.test.host).to eq("127.0.0.1")
       expect(configuratrilla.database.test.user).to eq("rails")
     end
+
+    it "should assign few blocks" do
+      configuratrilla = Configuratrilla::Config.new do
+        database do
+          testing do
+            host "127.0.0.1"
+            user "rails"
+          end
+          production do
+            host "test_host.com"
+            user "rails_production"
+          end
+        end
+      end
+
+      expect(configuratrilla.database.testing.host).to eq("127.0.0.1")
+      expect(configuratrilla.database.testing.user).to eq("rails")
+      expect(configuratrilla.database.production.host).to eq("test_host.com")
+      expect(configuratrilla.database.production.user).to eq("rails_production")
+    end
   end
 end
