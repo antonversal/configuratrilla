@@ -11,6 +11,12 @@ module Configuratrilla
       raise NoMethodError
     end
 
+    def to_hash
+      @values.inject({}) do |memo,(k,v)|
+        memo.merge(k => v.is_a?(Configuratrilla::Config) ? v.to_hash : v)
+      end
+    end
+
     def method_missing(method_id, *args, &block)
       raise "Too many arguments" if args.size > 1
       if method_id.to_s[-1, 1] == "="

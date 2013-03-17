@@ -21,6 +21,10 @@ describe Configuratrilla::Config do
         expect(configuratrilla.variable1).to eq("test1")
         expect(configuratrilla.variable2).to eq("test2")
       end
+
+      describe "#to_hash" do
+        it { expect(configuratrilla.to_hash).to eq({"variable1" => 100, "variable2" => 300}) }
+      end
     end
 
     context "when assign like method" do
@@ -50,6 +54,11 @@ describe Configuratrilla::Config do
       expect(configuratrilla.database.host).to eq("127.0.0.1")
       expect(configuratrilla.database.login).to eq("rails")
     end
+
+    describe "#to_hash" do
+      it { expect(configuratrilla.to_hash).to eq({"database" => {"host" => "127.0.0.1", "login" => "rails"}}) }
+    end
+
   end
 
   context "when third nesting" do
@@ -74,6 +83,25 @@ describe Configuratrilla::Config do
       expect(configuratrilla.database.test1.test2.test3.test4.host).to eq("127.0.0.1")
       expect(configuratrilla.database.test1.test2.test3.test5.login).to eq("rails")
     end
+
+    describe "#to_hash" do
+      it {
+        hash = {
+          "database" => {
+            "test1" => {
+              "test2" => {
+                "test3" => {
+                  "test4" => {"host" => "127.0.0.1"},
+                  "test5" => {"login" => "rails"}
+                }
+              }
+            }
+          }
+        }
+        expect(configuratrilla.to_hash).to eq(hash)
+      }
+    end
+
   end
 
   it "should rise error when more than one argument" do
