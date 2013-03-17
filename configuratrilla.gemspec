@@ -12,6 +12,6 @@ Gem::Specification.new do |s|
   s.authors     = ["Anton Versal"]
   s.email       = 'ant.ver@gmail.com'
   s.files       = ["lib/configuratrilla/config.rb", "lib/configuratrilla/nil.rb", "lib/configuratrilla/version.rb",
-                   "lib/configuratrilla.rb"]
+                   "lib/configuratrilla.rb", "README.md"]
   s.homepage    = 'http://github.com/antonversal/configuratrilla'
 end
