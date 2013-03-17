@@ -5,12 +5,10 @@ module Configuratrilla
       @previous_method = method
     end
 
-    def to_ary(*args)
-      nil
-    end
-
-    def to_a(*args)
-      nil
+    %w{inspect nil? rationalize to_a to_c to_f to_i to_r to_s to_ary | & ^}.each do |m|
+      define_method m do |*args|
+        nil.send(m,*args)
+      end
     end
 
     def method_missing(method_id, *args, &block)
