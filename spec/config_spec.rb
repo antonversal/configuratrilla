@@ -62,13 +62,13 @@ describe Configuratrilla::Config do
 
   context "when third nesting" do
     before(:each) do
-      configuratrilla.database.test.host = "127.0.0.1"
-      configuratrilla.database.test.login = "rails"
+      configuratrilla.database.testing.host = "127.0.0.1"
+      configuratrilla.database.testing.login = "rails"
     end
 
     it "should store multiple values" do
-      expect(configuratrilla.database.test.host).to eq("127.0.0.1")
-      expect(configuratrilla.database.test.login).to eq("rails")
+      expect(configuratrilla.database.testing.host).to eq("127.0.0.1")
+      expect(configuratrilla.database.testing.login).to eq("rails")
     end
   end
 
@@ -149,12 +149,12 @@ describe Configuratrilla::Config do
 
     it "should accept chain of methods and then block" do
       configuratrilla = Configuratrilla::Config.new
-      configuratrilla.database.test do
+      configuratrilla.database.testing do
         host "127.0.0.1"
         user "rails"
       end
-      expect(configuratrilla.database.test.host).to eq("127.0.0.1")
-      expect(configuratrilla.database.test.user).to eq("rails")
+      expect(configuratrilla.database.testing.host).to eq("127.0.0.1")
+      expect(configuratrilla.database.testing.user).to eq("rails")
     end
 
     it "should assign few blocks" do
