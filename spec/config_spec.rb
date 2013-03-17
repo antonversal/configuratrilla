@@ -1,5 +1,4 @@
-require "nil.rb"
-require "config.rb"
+require "configuratrilla"
 
 describe Configuratrilla::Config do
   let(:configuratrilla) { Configuratrilla::Config.new }

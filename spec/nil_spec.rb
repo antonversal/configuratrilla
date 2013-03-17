@@ -1,4 +1,5 @@
-require "nil.rb"
+require "configuratrilla/nil"
+
 describe Configuratrilla::Nil do
   let(:nil_conf) { Configuratrilla::Nil.new(nil, nil) }
   context "behaves like nil" do
